@@ -56,7 +56,7 @@ func weak_partition(arr []int, i int, j int, piv int) int {
 	return i
 }
 
-func sort_pivots(arr []int, piv int) int {
+func pivots2right(arr []int, piv int) int {
 
 	swapF := reflect.Swapper(arr)
 
@@ -103,7 +103,7 @@ func sort_pivots(arr []int, piv int) int {
 func partition(arr []int, i int, j int, piv int) (int, int) {
 
 	b_piv := weak_partition(arr, i, j, piv)
-	a_piv := sort_pivots(arr[0:b_piv], piv)
+	a_piv := pivots2right(arr[0:b_piv], piv)
 
 	return a_piv, b_piv
 }
