@@ -98,14 +98,20 @@ func pivots2right(arr []int, piv int) int {
 * @PROC: 1. Do soft partitioning with weak_partition():
 *	    - All smaller or equales to pivot are on the left.
 *	    - All greater than pivot are on the right.
-*	 2. Sort dangling pivots to the right with sort_pivots().
+*	 2. Sort dangling pivots to the right with pivots2right().
  */
 func partition(arr []int, i int, j int, piv int) (int, int) {
 
-	b_piv := weak_partition(arr, i, j, piv)
-	a_piv := pivots2right(arr[0:b_piv], piv)
+	r_edge := weak_partition(arr, i, j, piv)	// r_edge := the right most pivot value index
+	l_edge := pivots2right(arr[0:r_edge], piv)	// l_edge := the left most pivot value index
 
-	return a_piv, b_piv
+	/*
+	* a_i < pivot
+	* b_i > pivot
+	* 		       l_edge	      r_edge
+	* (a_1,	a_2, ..., a_k, piv, ........, piv,     b_1, b_2, ..., b_m)
+	*/
+	return l_edge, r_edge
 }
 
 /*
